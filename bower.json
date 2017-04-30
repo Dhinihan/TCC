@@ -1,0 +1,26 @@
+{
+  "name": "tcc-web",
+  "homepage": "https://linux.ime.usp.br/~dhinihan/mac0499/index.html",
+  "authors": [
+    "Vinícius Nascimento Silva <vinicius.nascimento.silva@usp.br>"
+  ],
+  "description": "Página com meu TCC",
+  "main": "index.html",
+  "keywords": [
+    "tcc",
+    "usp",
+    "ime"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "skeleton": "^2.0.4"
+  }
+}
