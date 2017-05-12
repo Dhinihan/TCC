@@ -7,50 +7,32 @@ class Parser:
     def __init__(self, file):
         self.file = file
 
-    def get_next_post(self, tag=None, max_tries=100000):
+    def get_next_post(self, tag=None, max_tries=1000000):
         post_text = ''
 
         for i in range(max_tries):
-            print (str(i) + ': ', end='')
             post_text = self.read_row()
             if post_text is None:
                 return None
             if tag is None:
                 return post_text
-            if self.post_matches_tag(post_text, tag):
+            if self.post_matches_tag_alt(post_text, tag):
                 return post_text
-            print('')
 
         return None
 
-    def post_matches_tag(self, post, tag):
-        matches = re.search('Tags="((?:&lt;[^;]+&gt;)+)"', post)
+    def post_matches_tag_alt(self, post, tag):
+        matches = re.search('Tags="[^"]*%s[^"]*"' % tag, post)
 
         if matches is None:
             return False
 
-        tags_text = matches.group(1)
-        tags = self.split_tags(tags_text)
-        print (tags)
-        return tag in tags
+        return True
 
     def read_row(self):
         end_candidate = False
-        row = ''
-        for i in range(0, 1000000):
-            character = self.file.read(1)
-            if not character:
-                return row
-
-            row += character
-
-            if end_candidate and character == '>':
-                return row
-
-            if character == '/':
-                end_candidate = True
-            else:
-                end_candidate = False
+        for line in file:
+            return line
 
     def split_tags(self, tags_text):
         decoded_tags = html.unescape(tags_text)
@@ -60,5 +42,5 @@ class Parser:
 
 file = open('../raw/Posts.xml')
 parser = Parser(file)
-print (parser.get_next_post(tag='dbunit'))
-print (parser.get_next_post(tag='dbunit'))
+post = parser.get_next_post(tag='dbunit')
+print(post)
