@@ -1,13 +1,18 @@
 import psycopg2
 
 connection = None
+last_cursor = None
 
-def run_sql(sql, values):
+def run_sql(sql, values = None):
+    global last_cursor
     if connection == None:
         init_connection()
-    cursor = connection.cursor()
-    cursor.execute(sql, values)
+    last_cursor = connection.cursor()
+    last_cursor.execute(sql, values)
     connection.commit()
+
+def results():
+    return last_cursor.fetchall()
 
 def init_connection():
     global connection
