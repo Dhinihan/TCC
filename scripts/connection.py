@@ -17,6 +17,6 @@ def results():
 def init_connection():
     global connection
     try:
-        connection = psycopg2.connect("dbname='tcc' user='postgres' password='darklord' host='localhost'")
+        connection = psycopg2.connect("dbname='tcc' user='postgres' password='' host='localhost'")
     except:
         print ("I am unable to connect to the database.")
