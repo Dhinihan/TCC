@@ -17,8 +17,6 @@ connection.run_sql('select count(id) as conta from post where question_type is n
 conta = connection.results()
 conta = conta[0][0]
 
-print(conta)
-
 shuffle(posts)
 
 for post in posts:
@@ -36,7 +34,7 @@ for post in posts:
     print ("3: Por quê")
     print ("4: Não referencia diretamente dbunit")
     print ("5: Parar")
-    question_type = int(input("Classify: "))
+    question_type = int(input("Classifique: "))
 
     if question_type == 5:
         break

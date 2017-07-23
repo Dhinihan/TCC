@@ -25,3 +25,13 @@
 - Quando as perguntas foram "Dbunit é a melhor forma? Ou deveria usar outra ferramenta", classifiquei no "por que"
 
 - Algumas perguntas envolvem a integração de várias bibliotecas e o dbunit é apenas uma delas, mesmo assim classifiquei as perguntas dentro de (1,2,3)
+
+- Considerei questões que citavam dbunit apenas para descartá-lo como uma opção viável no tipo 4
+
+- Bibliotecas que aparentemente aparecem junto com dbunit: arquillian, spring, unitils
+
+- Mesmo qque a resposta da questão possa ser "Use dbunit", se a pergunta não citar dbunit, classifiquei com 4
+
+- erros
+  - Jersey Test @Autowired field in tested class is null
+  - Giving GUID for data using NDBUnit
