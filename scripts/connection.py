@@ -14,6 +14,9 @@ def run_sql(sql, values = None):
 def results():
     return last_cursor.fetchall()
 
+def columns():
+    return [desc.name for desc in last_cursor.description]
+
 def init_connection():
     global connection
     try:
