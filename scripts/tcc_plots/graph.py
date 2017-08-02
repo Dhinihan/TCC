@@ -47,5 +47,5 @@ def plot(sql, title):
 
     plt.axis([0 - width, len(x), 0, max(y)*1.618])
 
-    plt.savefig('../plots/' + utils.filename_from_title(title, 'png'))
+    plt.savefig(utils.filename_from_title(title, 'png'))
     plt.clf()

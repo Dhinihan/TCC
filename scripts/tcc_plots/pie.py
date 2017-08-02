@@ -38,5 +38,5 @@ def plot(sql, title):
 
     _build_plot(fig1, ax1, data, labels, title)
 
-    plt.savefig('../plots/' + utils.filename_from_title(title, 'png'))
+    plt.savefig(utils.filename_from_title(title, 'png'))
     plt.clf()
