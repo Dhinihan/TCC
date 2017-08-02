@@ -52,6 +52,31 @@
 
 - Todos os gráficos e tabelas foram gerados pelo script [make_plots](scripts/make_plots.py)
 
+#### Extração de temas das postagens
+
+- LDA (Latent Dirichlet Allocation)
+  - Extrai tópicos de uma coleção de documentos
+  - Atribui uma probabilidade de cada documento participar de um tópico
+  - Relaciona cada tópico a palavras mais recorrentes
+  - O número de tópicos é definido previamente
+  - O método funciona de forma iterativa
+  - [Boa referência](http://blog.echen.me/2011/08/22/introduction-to-latent-dirichlet-allocation)
+  - [Biblioteca de python com implementação de LDA](https://pypi.python.org/pypi/lda)
+
+- Testes para melhor captar os tópicos:
+  - Documentos puro
+  - Documentos sem código
+  - Documentos sem código e sem "stop words"
+  - Documentos sem código, sem "stop words" e com as palavras stemizadas
+
+- Minerar os textos
+  - Criar uma matrix de vocabulários
+    - linhas representam postagens
+    - colunas representam palavras
+    - valores representam frequencia da palavra no documento
+  - [Biblioteca de python](https://pypi.python.org/pypi/textmining/1.0)
+
+
 ## TODO
 
 - Organizar log antigo
