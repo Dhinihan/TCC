@@ -35,7 +35,7 @@
 #### Extração de informações em gráficos e tabelas
 
 - As seguintes informações puderam ser extraídas diretamente dos dados
-  - Perguntas por Tipo
+  - [Perguntas por Tipo]()
   - Perguntas por Tipo Desconsiderando Não Relevantes
   - Respostas por Tipo de Pergunta
   - Respostas por Tipo de Pergunta Desconsiderando Não Relevantes
@@ -51,3 +51,8 @@
   - Número de perguntas por ano
 
 - Todos os gráficos foram gerados por scripts em python para facilitar a reconstrução dos mesmos, além de documentar o método de extração
+
+## TODO
+
+- Organizar log antigo
+- Melhorar organização dos scripts
