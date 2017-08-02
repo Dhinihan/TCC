@@ -30,8 +30,24 @@
 
 - Bibliotecas que aparentemente aparecem junto com dbunit: arquillian, spring, unitils
 
-- Mesmo qque a resposta da questão possa ser "Use dbunit", se a pergunta não citar dbunit, classifiquei com 4
+- Mesmo que a resposta da questão possa ser "Use dbunit", se a pergunta não citar dbunit, classifiquei com 4
 
-- erros
-  - Jersey Test @Autowired field in tested class is null
-  - Giving GUID for data using NDBUnit
+#### Extração de informações em gráficos e tabelas
+
+- As seguintes informações puderam ser extraídas diretamente dos dados
+  - Perguntas por Tipo
+  - Perguntas por Tipo Desconsiderando Não Relevantes
+  - Respostas por Tipo de Pergunta
+  - Respostas por Tipo de Pergunta Desconsiderando Não Relevantes
+  - Perguntas por Presença de Resposta Aceita
+  - Perguntas por Presença de Resposta
+  - Perguntas por Presença de Resposta e Resposta Aceita
+  - Perguntas dividas pela presença de código
+  - Respostas dividas pela presença de código
+  - Domínios mais Frequentes em Respostas
+  - Domínios mais Frequentes em Perguntas
+  - Dados Agregados Sobre o Tempo até a Resposta Aceita
+  - Dados Agregados Sobre o Tempo até uma Resposta
+  - Número de perguntas por ano
+
+- Todos os gráficos foram gerados por scripts em python para facilitar a reconstrução dos mesmos, além de documentar o método de extração
