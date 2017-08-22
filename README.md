@@ -35,6 +35,7 @@
 #### Extração de informações em gráficos e tabelas
 
 - As seguintes informações puderam ser extraídas diretamente dos dados
+  - [Postagens dividas por perguntas e respostas](attachments/postagens_dividas_por_perguntas_e_respostas.png)
   - [Perguntas por Tipo](attachments/perguntas_por_tipo.png)
   - [Perguntas por Tipo Desconsiderando Não Relevantes](attachments/perguntas_por_tipo_desconsiderando_não_relevantes.png)
   - [Respostas por Tipo de Pergunta](attachments/respostas_por_tipo_de_pergunta.png)
@@ -42,8 +43,8 @@
   - [Perguntas por Presença de Resposta Aceita](attachments/perguntas_por_presença_de_resposta_aceita.png)
   - [Perguntas por Presença de Resposta](attachments/perguntas_por_presença_de_resposta.png)
   - [Perguntas por Presença de Resposta e Resposta Aceita](attachments/perguntas_por_presença_de_resposta_e_resposta_aceita.png)
-  - [Perguntas dividas pela presença de código](attachments/perguntas_dividas_pela_presença_de_código.png)
-  - [Respostas dividas pela presença de código](attachments/respostas_dividas_pela_presença_de_código.png)
+  - [Perguntas divididas pela presença de código](attachments/perguntas_divididas_pela_presença_de_código.png)
+  - [Respostas divididas pela presença de código](attachments/respostas_divididas_pela_presença_de_código.png)
   - [Domínios mais Frequentes em Respostas](attachments/domínios_mais_frequentes_em_respostas.pdf)
   - [Domínios mais Frequentes em Perguntas](attachments/domínios_mais_frequentes_em_perguntas.pdf)
   - [Dados Agregados Sobre o Tempo até a Resposta Aceita](attachments/dados_agregados_sobre_o_tempo_até_a_resposta_aceita.pdf)
@@ -52,7 +53,34 @@
 
 - Todos os gráficos e tabelas foram gerados pelo script [make_plots](scripts/make_plots.py)
 
-#### Extração de temas das postagens
+#### Primeiro rascunho: resultados preliminares
+
+- **Revisão**: Questões de pesquisa
+  - Q1​: Qual é o tipo de pergunta mais feita pelos usuários do dbunit no Stack Overflow.
+  - Q2​: ​Quais são os temas mais comuns nas postagens do Stack Overflow relacionadas ao dbunit como.
+  - Q3​: Qual é a qualidade das respostas oferecidas pelos usuários do site.
+  - Q4​: As diferenças entre as dificuldades dos usuários do dbunit e de outras tecnologias de desenvolvimento de software.
+
+- Análise dos dados
+
+- Possíveis referências:
+  - Nasehi SM, Sillito J, Maurer F, Burns C (2012) What makes a good code example? A study of programming Q&A in StackOverflow. In: Proceedings of the 2012 IEEE International Conference on Software Maintenance (ICSM’12). IEEE Computer Society, Washington, DC, pp 25–34
+  -  Parnin C, Treude C, Grammel L, Storey MA (2012) Crowd documentation: exploring the coverage and the dynamics of API discussions on Stack Overflow. Technical Report GIT-CS-12-05. Georgia Institute of Technology. http://www.chrisparnin.me/pdf/crowddoc.pdf
+  - Souza LBLd, Campos EC, Maia MDA (2014) Ranking crowd knowledge to assist software development. In: Proceedings of the 22nd International Conference on Program Comprehension (ICPC’14). ACM, New York, pp 72–82
+  - Treude C, Barzilay O, Storey MA (2011) How Do Programmers ask and answer questions on the Web? (NIER Track). In: Proceedings of the 33rd International Conference on Software Engineering (ICSE’11). ACM, New York, pp 804–807
+
+#### Primeira versão
+
+- **Partes**:
+  - Resumo
+  - Introdução/Motivação
+  - Questões de Pesquisa
+  - Levantamento de dados
+  - Análise de dados
+  - Conclusão / Próximos Passos
+
+
+#### Extração de temas das postagens (Adiado)
 
 - LDA (Latent Dirichlet Allocation)
   - Extrai tópicos de uma coleção de documentos
@@ -77,7 +105,10 @@
   - [Biblioteca de python](https://pypi.python.org/pypi/textmining/1.0)
 
 
+
+
 ## TODO
 
 - Organizar log antigo
 - Melhorar organização dos scripts
+- Encontrar número de

@@ -3,6 +3,18 @@ from tcc_plots import table
 from tcc_plots import graph
 
 pie.plot("""
+SELECT CASE
+           WHEN post_type_id = 1 THEN 'Perguntas'
+           ELSE 'Respostas'
+       END AS descricao,
+       count(*) AS n
+FROM post
+GROUP BY descricao
+""",
+    "Postagens dividas por perguntas e respostas",
+)
+
+pie.plot("""
     SELECT question_type.description, count(*) FROM post
     LEFT JOIN question_type ON question_type.id = post.question_type
     WHERE post_type_id = 1
@@ -113,7 +125,7 @@ pie.plot(
       AND post.question_type <> 4
     GROUP BY descricao
     """,
-    "Perguntas dividas pela presença de código"
+    "Perguntas divididas pela presença de código"
 )
 
 pie.plot(
@@ -129,7 +141,7 @@ pie.plot(
       AND question.question_type <> 4
     GROUP BY descricao
     """,
-    "Respostas dividas pela presença de código"
+    "Respostas divididas pela presença de código"
 )
 
 table.plot(
