@@ -73,12 +73,29 @@
 
 - **Partes**:
   - Resumo
+    - Fazer no fim
   - Introdução/Motivação
+    - Testes automáticos
+    - Dificuldades com testes de integração
+    - Dbunit
   - Questões de Pesquisa
-  - Levantamento de dados
-  - Análise de dados
-  - Conclusão / Próximos Passos
-
+    - Q1​: Qual é o tipo de pergunta mais feita pelos usuários do dbunit no Stack Overflow.
+    - Q2​: ​Quais são os temas mais comuns nas postagens do Stack Overflow relacionadas ao dbunit como.
+    - Q3​: Qual é a qualidade das respostas oferecidas pelos usuários do site.
+    - Q4​: As diferenças entre as dificuldades dos usuários do dbunit e de outras tecnologias de desenvolvimento de software.
+  - **Levantamento de dados**
+    - **Separando os dados para o banco de dados**
+    - **Decidindo não usar IA**
+    - **Classificação manual**
+    - **Extração de informações**
+  - **Análise de dados**
+    - **Gráficos dos resultados (Q1)**
+    - **(Q2) é preciso LDA**
+    - **(Q3) é preciso comparar mais, mas há gráficos**
+    - **(Q3) é preciso comparar mais**
+  - **Conclusão / Próximos Passos**
+    - **Ainda há muito a fazer**
+    - **LDA e comparar**
 
 #### Extração de temas das postagens (Adiado)
 
