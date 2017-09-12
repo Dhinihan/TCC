@@ -120,6 +120,19 @@
   - [Biblioteca de python](https://github.com/dmiro/bagofwords) Para bag of words
   - Sklearn tem implementação de matrix de vocabulários
 
+- log likelihood
+  - 1 tópicos:  -25 . 10⁶
+  - 2 tópicos:  -25 . 10⁶
+  - 3 tópicos:  -26 . 10⁶
+  - 5 tópicos:  -26 . 10⁶
+  - 8 tópicos:  -27 . 10⁶
+  - 13 tópicos: -27 . 10⁶
+
+- Temas
+  - exceções com o java
+  - integração com outras ferramentas
+  - dúvidas gerais
+
 
 ## TODO
 

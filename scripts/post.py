@@ -1,5 +1,8 @@
 from xml.etree import ElementTree
 import connection
+import html
+import re
+
 
 class Post:
 
@@ -10,6 +13,24 @@ class Post:
         """
         connection.run_sql(sql)
         return connection.results()
+
+    @staticmethod
+    def print(body, title, id = -1):
+        OKGREEN = '\033[92m'
+        OKBLUE = '\033[94m'
+        BOLD = '\033[1m'
+        ENDC = '\033[0m'
+
+        regex_tags = re.compile(r'(<!--.*?-->|<[^>]*>)')
+        regex_dbunit = re.compile(r'(dbunit)', re.IGNORECASE)
+
+        body = regex_tags.sub('', body)
+        body = html.unescape(body)
+        body = regex_dbunit.sub(OKBLUE + BOLD + r'\1' + ENDC, body)
+        print (OKGREEN + BOLD + title + ENDC + "\n")
+        if (id != -1):
+            print ("ID: %d\n" % id)
+        print (body)
 
     def __init__(self, text):
         self.data = ElementTree.fromstring(text).attrib

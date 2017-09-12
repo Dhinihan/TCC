@@ -1,43 +1,29 @@
 import connection
-import re
-import html
-import operator
-from bow import DocumentClass
-from sklearn.feature_extraction.text import CountVectorizer
-import lda
-import lda.datasets
-import numpy as np
+from post import Post
+from tcc_themes import vocabulary
+from tcc_themes import theme
+from tcc_themes import stemmer
 
-connection.run_sql('select stemmed_body, id from post where question_type <> 4')
+connection.run_sql('select stemmed_body, id, title from post where question_type <> 4')
 posts = connection.results()
-regex_tags = re.compile(r'(<!--.*?-->|<[^>]*>)')
 documents = []
-dclass = DocumentClass()
 
 for post in posts:
-    body = post[0]
-    body = regex_tags.sub('', body)
-    body = html.unescape(body)
-    dclass(body)
-    documents.append(body)
+    text = post[0]
+    stemmed_title = stemmer.process_text(post[2])
+    text = text + ' ' + stemmed_title + ' ' + stemmed_title
+    documents.append(text)
 
-vocabulary = []
-sorted_x = sorted(dclass.items(), key=operator.itemgetter(1), reverse=True)
-for i in range(1500):
-    vocabulary.append(sorted_x[i][0])
+words = vocabulary.build(documents, N = 2500)
+documents_themes, topics = theme.assign(documents, words, topics = 3)
 
-vectorizer = CountVectorizer(vocabulary = vocabulary)
-X = vectorizer.fit_transform(documents)
+connection.run_sql('delete from topic')
+for i, topic in enumerate(topics):
+    sql = "INSERT INTO topic VALUES (%s, %s)"
+    values = [i + 1, topic]
+    connection.run_sql(sql, values)
 
-print(X.shape)
-print(X.sum())
+for i, topics in enumerate(documents_themes):
+    str_topics = map(str, topics)
+    connection.run_sql("update post set topics = '{%s}' where id = %d" % (', '.join(str_topics), posts[i][1]));
 
-model = lda.LDA(n_topics=5, n_iter=1500, random_state=1)
-vocab = vocabulary
-model.fit(X)
-topic_word = model.components_
-n_top_words = 20
-
-for i, topic_dist in enumerate(topic_word):
-    topic_words = np.array(vocab)[np.argsort(topic_dist)][:-(n_top_words+1):-1]
-    print('Topic {}: {}'.format(i, ' '.join(topic_words)))

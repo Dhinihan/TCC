@@ -211,7 +211,7 @@ table.plot_transpose(
 
 graph.plot(
     """
-    SELECT date_trunc('year', post.creation_date) AS created,
+    SELECT to_char(date_trunc('year', post.creation_date), 'YYYY') AS created,
            count(*) AS sum_bandwidth
     FROM post
     WHERE post.post_type_id = 1
@@ -220,4 +220,72 @@ graph.plot(
     ORDER BY 1
     """,
     "Número de perguntas por ano"
+)
+
+pie.plot("""
+SELECT
+  ( SELECT CASE
+               WHEN topics[1] > 0.5 THEN 'Exceções e problemas\ncom o Maven\n(TEMA 1)'
+               WHEN topics[2] > 0.5 THEN 'Integração com\noutras ferramentas\n(TEMA 2)'
+               WHEN topics[3] > 0.5 THEN 'Dúvidas gerais\nde dbunit\n(TEMA 3)'
+               ELSE 'Não se encaixa\nem nenhum tema'
+           END) AS tema,
+       count(*) AS n
+FROM post
+WHERE question_type <> 4
+GROUP BY tema
+ORDER BY tema
+""",
+    "Perguntas por tema mais presente",
+)
+
+pie.plot("""
+SELECT question_type.description, count(*) FROM post
+LEFT JOIN question_type ON question_type.id = post.question_type
+WHERE post_type_id = 1
+AND question_type.id <> 4
+AND topics[1] > 0.5
+GROUP BY question_type.description, question_type.id
+ORDER BY question_type.id
+""",
+    "Tipo de perguntas do tema 1",
+)
+
+pie.plot("""
+SELECT question_type.description, count(*) FROM post
+LEFT JOIN question_type ON question_type.id = post.question_type
+WHERE post_type_id = 1
+AND question_type.id <> 4
+AND topics[2] > 0.5
+GROUP BY question_type.description, question_type.id
+ORDER BY question_type.id
+""",
+    "Tipo de perguntas do tema 2",
+)
+
+pie.plot("""
+SELECT question_type.description, count(*) FROM post
+LEFT JOIN question_type ON question_type.id = post.question_type
+WHERE post_type_id = 1
+AND question_type.id <> 4
+AND topics[3] > 0.5
+GROUP BY question_type.description, question_type.id
+ORDER BY question_type.id
+""",
+    "Tipo de perguntas do tema 3",
+)
+
+graph.plot("""
+  SELECT question_type.description,
+         avg(topics[1]),
+         avg(topics[2]),
+         avg(topics[3])
+  FROM post
+  LEFT JOIN question_type ON question_type.id = post.question_type
+  WHERE question_type <> 4
+  GROUP BY question_type.description, question_type.id
+  ORDER BY question_type.id
+  """,
+  "Probabilidade de uma pergunta ser de um tema pelo seu tipo",
+  legend=('Tema 1', 'Tema 2', 'Tema 3')
 )
