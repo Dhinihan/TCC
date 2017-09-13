@@ -23,10 +23,11 @@ def _build_plot(fig, ax, data, labels, title):
 
     ax.pie(data, labels=labels, autopct=_make_autopct(data), shadow=True, startangle=90)
     ax.axis('equal')
-    ax.set_title('Total: %d' % sum(data), y=1.05)
+    ax.set_title('Total: %d' % sum(data), y=1.1)
 
-    fig.suptitle(title, fontsize=14, fontweight='bold')
-    fig.subplots_adjust(top=0.85)
+    fig.set_size_inches(4*16/9, 4)
+    fig.suptitle(title, fontsize=12, fontweight='bold')
+    fig.subplots_adjust(top=0.8)
 
 def plot(sql, title):
     connection.run_sql(sql)

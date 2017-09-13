@@ -133,6 +133,21 @@
   - integração com outras ferramentas
   - dúvidas gerais
 
+#### Segunda versão
+
+- **Novas Partes**:
+  - Levantamento de dados
+    - Stemização dos corpos das postagens
+    - escolha do número de temas e a utilização dos titulos na busca
+  - Análise de dados
+    - (Q2) mostrar os temas encontrados, com exemplos de postagens
+    - (Q2) mostrar a relação entre os temas e os tipos
+  - Conclusão / Próximos Passos
+    - começar a olhar para as respostas
+
+#### Terceira Versão
+
+- **Separar melhor análise de levantamento**
 
 ## TODO
 
