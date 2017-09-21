@@ -43,15 +43,17 @@
   - [Perguntas por Presença de Resposta Aceita](attachments/perguntas_por_presença_de_resposta_aceita.png)
   - [Perguntas por Presença de Resposta](attachments/perguntas_por_presença_de_resposta.png)
   - [Perguntas por Presença de Resposta e Resposta Aceita](attachments/perguntas_por_presença_de_resposta_e_resposta_aceita.png)
-  - [Perguntas divididas pela presença de código](attachments/perguntas_divididas_pela_presença_de_código.png)
-  - [Respostas divididas pela presença de código](attachments/respostas_divididas_pela_presença_de_código.png)
+  - [Perguntas por tema mais presente](attachments/perguntas_por_tema_mais_presente.png)
+  - [Tipo de perguntas do tema 1](attachments/tipo_de_perguntas_do_tema_1.png)
+  - [Tipo de perguntas do tema 2](attachments/tipo_de_perguntas_do_tema_2.png)
+  - [Tipo de perguntas do tema 3](attachments/tipo_de_perguntas_do_tema_3.png)
+  - [Probabilidade de uma pergunta ser de um tema pelo seu tipo](attachments/probabilidade_de_uma_pergunta_ser_de_um_tema_pelo_seu_tipo.png)
   - [Domínios mais Frequentes em Respostas](attachments/domínios_mais_frequentes_em_respostas.pdf)
   - [Domínios mais Frequentes em Perguntas](attachments/domínios_mais_frequentes_em_perguntas.pdf)
   - [Dados Agregados Sobre o Tempo até a Resposta Aceita](attachments/dados_agregados_sobre_o_tempo_até_a_resposta_aceita.pdf)
   - [Dados Agregados Sobre o Tempo até uma Resposta](attachments/dados_agregados_sobre_o_tempo_até_uma_resposta.pdf)
-  - [Número de perguntas por ano](attachments/número_de_perguntas_por_ano.png)
 
-- Todos os gráficos e tabelas foram gerados pelo script [make_plots](scripts/make_plots.py)
+-Todos os gráficos e tabelas foram gerados pelo script [make_plots](scripts/make-plots.py)
 
 #### Primeiro rascunho: resultados preliminares
 
