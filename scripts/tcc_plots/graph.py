@@ -5,6 +5,30 @@ from tcc_plots import utils
 
 colors = ['r', 'g', 'b', 'y']
 
+
+def label_top(rects, ax):
+    for rect in rects:
+        height = rect.get_height()
+        ax.text(rect.get_x() + rect.get_width()/2., 1.05*height,
+            '%dk' % int(height/1000),
+            ha='center', va='bottom')
+
+def label_middle(rects, ax):
+    previous_height = []
+    for i in range(len(rects[0])):
+        previous_height.append(0)
+    for rect in rects:
+        for i, bar in enumerate(rect):
+            height = bar.get_height()
+            ax.text(
+                bar.get_x() + bar.get_width()/2.,
+                height/2 + previous_height[i] - 0.035,
+                ('%.1f' % float(height*100)) + '%',
+                ha='center',
+                va='bottom'
+            )
+            previous_height[i] += height
+
 def _separate(results):
     x = []
     y = []
@@ -50,20 +74,14 @@ def plot(sql, title, legend = False):
 
     # ax.legend(rects1[0], ('Men'))
 
-    def autolabel(rects):
-        """
-        Attach a text label above each bar displaying its height
-        """
-        for rect in rects:
-            height = rect.get_height()
-            ax.text(rect.get_x() + rect.get_width()/2., 1.05*height,
-                '%d' % int(height),
-                ha='center', va='bottom')
-
     if (len(rects) == 1):
-        autolabel(rects[0])
+        label_top(rects[0], ax)
+    else:
+        label_middle(rects, ax)
 
-    plt.axis([0 - width, len(x), 0, max(total)*1.618])
+
+
+    plt.axis([0 - width, len(x), 0, float(max(total))*1.618])
 
     plt.savefig(utils.filename_from_title(title, 'png'))
     plt.clf()

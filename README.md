@@ -155,3 +155,37 @@
 
 - Organizar log antigo
 - Melhorar organização dos scripts
+
+### Layout
+
+  - Introdução
+    - Testes automáticos
+    - Dificuldades com testes de integração
+    - Dbunit
+  - Questões de Pesquisa
+    - Q1​: Qual é o tipo de pergunta mais feita pelos usuários do dbunit no Stack Overflow.
+    - Q2​: ​Quais são os temas mais comuns nas postagens do Stack Overflow relacionadas ao dbunit.
+    - Q3​: Qual é a qualidade das respostas oferecidas pelos usuários do site.
+    - Q4​: As diferenças entre as dificuldades dos usuários do dbunit e de outras tecnologias de desenvolvimento de software.
+  - Levantamento de dados
+    - Separando os dados para o banco de dados
+    - Decidindo não usar IA
+    - Classificação manual
+    - Extração de informações através de scripts
+    - LDA
+    - Stemização dos corpos das postagens
+    - Escolha do número de temas e a utilização dos titulos na busca
+    - Queries no stack overflow
+  - Análise de dados
+    - (Q1) "Como" e "O quê" tem mais perguntas, "porque" tem mais visualizações
+    - (Q1) Comparação com o outro trabalho
+    - (Q2) Apresentação dos temas.
+    - (Q2) Integrações e problemas de configuração.
+    - (Q3) Menos respostas do que a média
+    - (Q3) Menos respostas aceitas do que a média
+    - (Q4) Poucas perguntas.
+    - (Q4) Continua relevante
+  - Conclusão
+    - É uma ferramenta pouco utilizada, mas que se mantém relevante devido a integração com outras ferramentas
+    - Se beneficiaria de integração mais simplificada com outras ferramentas (banco de dados, frameworks e controladores de dependencias)
+    - A pouca utlização tem a ver com o baixo número de testes de integração, ou há outras estrtégias indeendentes?
