@@ -1,191 +1,163 @@
-# Log
+# Percepção coletiva da comunidade de desenvolvimento em relação ao dbunit
 
-## Extraindo informações
+## Composição do repositório
 
-#### Classificação
+Este repositório é composto pelos seguintes elementos:
 
-- Os posts de perguntas serão classificados nos sequintes tipos
-  - Perguntas do tipo **"O Que?"**: A possível solução que o usuário propõe apresenta algum erro
-  - Perguntas do tipo **"Como?"**: O usuário ainda não identificou uma possível solução
-  - Perguntas do tipo **"Por Que?"**: O usuário sabe uma solução, mas quer entendê-la melhor. Ou o usuário gotaria de entender melhor as suas possibilidades
-  - Perguntas não relacionadas ao dbunit
+- Pasta scripts: Os scripts utilizados para a extração dos dados que deram base à pesquisa.
+- Pasta www: O site que guarda o trabalho.
+- Pasta attachments: Os gráficos que foram gerados durante a pesquisa
+- Pasta backup: Os dados utilizados durante a pesquisa
 
-- Criarei um campo no banco de dados com o nome question_type que apenas será aplicável a posts com post\_type\_id = 1
+## Resumo do Trabalho
 
-- Criarei o script [classify_posts](scripts/classify_posts.py) que sorteará uma pergunta e podirá que a classifique com números de 1 a 4 a partir da seguinte regra:
-  - Perguntas do tipo "O Que?": 1
-  - Perguntas do tipo "Como?": 2
-  - Perguntas do tipo "Por Que?": 3
-  - Perguntas não relacionadas ao dbunit: 4
+Neste trabalho estudamos a percepção geral da comunidade de desenvolvedores de software em relação a ferramenta dbunit. O dbunit é uma extensão do Junit feita para controlar o estado do banco de dados antes de cada teste. Ele é a principal ferramenta para integração de testes automáticos com o banco de dados em Java, além de ter versões para outras linguagens como php e .NET. Para isso analisamos perguntas e respostas no site Stack Overflow relacionadas a esta ferramenta.
 
-- Algumas perguntas são marcadas com o valor 6, indicndo que precisarei avaliá-las com mais cuidado
+Desta forma nos propusemos a responder às seguintes questões de pesquisa: Qual é o tipo de pergunta mais feita pelos usuários do dbunit no Stack Overflow? (Q1); Quais são os temas mais comuns nas postagens do Stack Overflow relacionadas ao dbunit. (Q2); Qual é a qualidade das respostas oferecidas pelos usuários do site (Q3); e As diferenças entre os usuários do dbunit e de outras tecnologias de desenvolvimento de software no Stack Overflow (Q4).
 
-- Durante a leitura, várias perguntas relacionadas a banco de dados com multiplos schemas
+Em relação à Q1 descobrimos que há um empate entre questões do tipo “O que?” e “Como?” e um menor número de perguntas do tipo “Porquê”, mas estas são praticamente duas vezes mais visualizadas do que os outros dois tipos de questões. Esse tipo de distribuição não é incomum para outras ferramentas. Em relação à Q2 encontramos três temas que se destacam: “Exceções e problemas com o Maven”, “Dúvidas gerais sobre o dbunit” e “Integração com outras ferramentas” sendo que este último tema além de ser o mais presente, concentra a maioria das perguntas do tipo “Por quê”. Em relação à Q3 descobrimos que a grande maioria das perguntas são respondidas e quase metade delas tem uma resposta aceita que é próximo da média do site. Finalmente em relação a Q4 descobrimos que o dbunit mostrou um incremento de perguntas no início do Stack Overflow e se estabilizou nos últimos anos e que este crescimento segue o padrão do próprio Stack Overflow. Porém o dbunit tem um número pequeno de mais de perguntas se comparado com outras ferramentas como Hibernate e Spring que aparecem frequentemente juntos com o dbunit nas perguntas do site.
 
-- Quando as perguntas foram "Dbunit é a melhor forma? Ou deveria usar outra ferramenta", classifiquei no "por que"
+## Scripts
 
-- Algumas perguntas envolvem a integração de várias bibliotecas e o dbunit é apenas uma delas, mesmo assim classifiquei as perguntas dentro de (1,2,3)
+Diversos scripts foram utilizados neste trabalho, segue uma explicação dos principais:
 
-- Considerei questões que citavam dbunit apenas para descartá-lo como uma opção viável no tipo 4
+### crawler-questions.py
 
-- Bibliotecas que aparentemente aparecem junto com dbunit: arquillian, spring, unitils, phpunit
+Este script percorre o arquivo com um dump de todas as postagens do Stack Overflow no formato xml e salva no banco de dados todas as questões que contenham o texto *dbunit* no corpo.
 
-- Mesmo que a resposta da questão possa ser "Você deveria usar dbunit", se a pergunta não citar dbunit, classifiquei com 4
+### crawler-answers.py
 
-#### Extração de informações em gráficos e tabelas
+Este script percorre o arquivo com um dump de todas as postagens do Stack Overflow no formato xml e salva no banco de dados todas as respostas às questões marcadas como relacionadas com o dbunit.
 
-- As seguintes informações puderam ser extraídas diretamente dos dados
-  - [Postagens dividas por perguntas e respostas](attachments/postagens_dividas_por_perguntas_e_respostas.png)
-  - [Perguntas por Tipo](attachments/perguntas_por_tipo.png)
-  - [Perguntas por Tipo Desconsiderando Não Relevantes](attachments/perguntas_por_tipo_desconsiderando_não_relevantes.png)
-  - [Respostas por Tipo de Pergunta](attachments/respostas_por_tipo_de_pergunta.png)
-  - [Respostas por Tipo de Pergunta Desconsiderando Não Relevantes](attachments/respostas_por_tipo_de_pergunta_desconsiderando_não_relevantes.png)
-  - [Perguntas por Presença de Resposta Aceita](attachments/perguntas_por_presença_de_resposta_aceita.png)
-  - [Perguntas por Presença de Resposta](attachments/perguntas_por_presença_de_resposta.png)
-  - [Perguntas por Presença de Resposta e Resposta Aceita](attachments/perguntas_por_presença_de_resposta_e_resposta_aceita.png)
-  - [Perguntas por tema mais presente](attachments/perguntas_por_tema_mais_presente.png)
-  - [Tipo de perguntas do tema 1](attachments/tipo_de_perguntas_do_tema_1.png)
-  - [Tipo de perguntas do tema 2](attachments/tipo_de_perguntas_do_tema_2.png)
-  - [Tipo de perguntas do tema 3](attachments/tipo_de_perguntas_do_tema_3.png)
-  - [Probabilidade de uma pergunta ser de um tema pelo seu tipo](attachments/probabilidade_de_uma_pergunta_ser_de_um_tema_pelo_seu_tipo.png)
-  - [Domínios mais Frequentes em Respostas](attachments/domínios_mais_frequentes_em_respostas.pdf)
-  - [Domínios mais Frequentes em Perguntas](attachments/domínios_mais_frequentes_em_perguntas.pdf)
-  - [Dados Agregados Sobre o Tempo até a Resposta Aceita](attachments/dados_agregados_sobre_o_tempo_até_a_resposta_aceita.pdf)
-  - [Dados Agregados Sobre o Tempo até uma Resposta](attachments/dados_agregados_sobre_o_tempo_até_uma_resposta.pdf)
+### classify-posts.py
 
--Todos os gráficos e tabelas foram gerados pelo script [make_plots](scripts/make-plots.py)
+Este script foi utilizado para classificar manualmente os tipos de postagens relacionadas com o dbunit encontradas no stack overflow. A cada iteração ele sorteia um script ainda não classificiado, formata o texto para facilitar a visualização no terminal e registra a classificação digitada pelo usuáro no banco de dados. As classificações possíveis são
 
-#### Primeiro rascunho: resultados preliminares
+- "O quê"
+- "Como"
+- "Por quê"
+- "Não referencia diretamente dbunit"
 
-- **Revisão**: Questões de pesquisa
-  - Q1​: Qual é o tipo de pergunta mais feita pelos usuários do dbunit no Stack Overflow.
-  - Q2​: ​Quais são os temas mais comuns nas postagens do Stack Overflow relacionadas ao dbunit como.
-  - Q3​: Qual é a qualidade das respostas oferecidas pelos usuários do site.
-  - Q4​: As diferenças entre as dificuldades dos usuários do dbunit e de outras tecnologias de desenvolvimento de software.
+### extract-themes.py
 
-- Análise dos dados
+Este script seleciona todas as perguntas  dos tipos *O quê*, *Como* e *Por quê* e atribui uma probabilidade de cada uma delas pertencer a um "tema".
+Estes temas são definidos pela recorrência de palavras em comum entre as perguntas.
 
-- Possíveis referências:
-  - Nasehi SM, Sillito J, Maurer F, Burns C (2012) What makes a good code example? A study of programming Q&A in StackOverflow. In: Proceedings of the 2012 IEEE International Conference on Software Maintenance (ICSM’12). IEEE Computer Society, Washington, DC, pp 25–34
-  -  Parnin C, Treude C, Grammel L, Storey MA (2012) Crowd documentation: exploring the coverage and the dynamics of API discussions on Stack Overflow. Technical Report GIT-CS-12-05. Georgia Institute of Technology. http://www.chrisparnin.me/pdf/crowddoc.pdf
-  - Souza LBLd, Campos EC, Maia MDA (2014) Ranking crowd knowledge to assist software development. In: Proceedings of the 22nd International Conference on Program Comprehension (ICPC’14). ACM, New York, pp 72–82
-  - Treude C, Barzilay O, Storey MA (2011) How Do Programmers ask and answer questions on the Web? (NIER Track). In: Proceedings of the 33rd International Conference on Software Engineering (ICSE’11). ACM, New York, pp 804–807
+### make-plots.py
 
-#### Primeira versão
+Este script gera diversos gráficos relacionados ao trabalho.
 
-- **Partes**:
-  - Introdução/Motivação
-    - Testes automáticos
-    - Dificuldades com testes de integração
-    - Dbunit
-  - Questões de Pesquisa
-    - Q1​: Qual é o tipo de pergunta mais feita pelos usuários do dbunit no Stack Overflow.
-    - Q2​: ​Quais são os temas mais comuns nas postagens do Stack Overflow relacionadas ao dbunit como.
-    - Q3​: Qual é a qualidade das respostas oferecidas pelos usuários do site.
-    - Q4​: As diferenças entre as dificuldades dos usuários do dbunit e de outras tecnologias de desenvolvimento de software.
-  - Levantamento de dados
-    - Separando os dados para o banco de dados
-    - Decidindo não usar IA
-    - Classificação manual
-    - Extração de informações
-  - Análise de dados
-    - Gráficos dos resultados (Q1)
-    - (Q2) é preciso LDA
-    - (Q3) é preciso comparar mais, mas há gráficos
-    - (Q3) é preciso comparar mais
-  - Conclusão / Próximos Passos
-    - Ainda há muito a fazer
-    - LDA e comparar
+### process-posts.py
 
-#### Extração de temas das postagens (Adiado)
+Este script salva no banco de dados uma versão do texto com as palavras *stemizadas* e sem as *stop words* para melhorar o desempenho da classificação dos temas com LDA
 
-- LDA (Latent Dirichlet Allocation)
-  - Extrai tópicos de uma coleção de documentos
-  - Atribui uma probabilidade de cada documento participar de um tópico
-  - Relaciona cada tópico a palavras mais recorrentes
-  - O número de tópicos é definido previamente
-  - O método funciona de forma iterativa
-  - [Boa referência](http://blog.echen.me/2011/08/22/introduction-to-latent-dirichlet-allocation)
-  - [Biblioteca de python com implementação de LDA](https://pypi.python.org/pypi/lda)
+### view-themes.py
 
-- Testes para melhor captar os tópicos:
-  - Documentos puro
-  - Documentos sem código
-  - Documentos sem código e sem "stop words"
-  - Documentos sem código, sem "stop words" e com as palavras stemizadas
+Este script mostra as perguntas de um dos temas encontrados no script *extract-themes.py* na ordem de probabilidade da postagem participar do tema. A opção *--topic* recebe o índice do tópico que será visualizado. A opção *--n-posts* recebe o número de post para mostrar. A opção *--assending* pode ser marcada para mostrar as postagens com menor probablidade de pertencer ao tópico.
 
-- Minerar os textos
-  - Criar uma matrix de vocabulários
-    - linhas representam postagens
-    - colunas representam palavras
-    - valores representam frequencia da palavra no documento
-  - [Biblioteca de python](https://github.com/dmiro/bagofwords) Para bag of words
-  - Sklearn tem implementação de matrix de vocabulários
 
-- log likelihood
-  - 1 tópicos:  -25 . 10⁶
-  - 2 tópicos:  -25 . 10⁶
-  - 3 tópicos:  -26 . 10⁶
-  - 5 tópicos:  -26 . 10⁶
-  - 8 tópicos:  -27 . 10⁶
-  - 13 tópicos: -27 . 10⁶
+### outros scripts
 
-- Temas
-  - exceções com o java
-  - integração com outras ferramentas
-  - dúvidas gerais
+Os outros scripts deste trabalho são auxiliares aos scripts mencionados neste documento. Não são implementados para que sejam executados separadamente.
+Para configurar o banco de dados que estes scripts irão consumir é necessário editar o script *connection.py*
 
-#### Segunda versão
 
-- **Novas Partes**:
-  - Levantamento de dados
-    - Stemização dos corpos das postagens
-    - escolha do número de temas e a utilização dos titulos na busca
-  - Análise de dados
-    - (Q2) mostrar os temas encontrados, com exemplos de postagens
-    - (Q2) mostrar a relação entre os temas e os tipos
-  - Conclusão / Próximos Passos
-    - começar a olhar para as respostas
+## Gráficos
 
-#### Terceira Versão
+A pasta *attachments* contém diversos gráficos utilizados neste trabalho. Segue um índice com os links diretos para as imagens:
 
-- **Separar melhor análise de levantamento**
+- [Dados Agregados Sobre O Tempo Até A Resposta Aceita](attachments/dados_agregados_sobre_o_tempo_até_a_resposta_aceita.pdf)
+- [Dados Agregados Sobre O Tempo Até Uma Resposta](attachments/dados_agregados_sobre_o_tempo_até_uma_resposta.pdf)
+- [Domínios Mais Frequentes Em Perguntas](attachments/domínios_mais_frequentes_em_perguntas.pdf)
+- [Domínios Mais Frequentes Em Respostas](attachments/domínios_mais_frequentes_em_respostas.pdf)
+- [Média De Respostas Por Pergunta](attachments/média_de_respostas_por_pergunta.png)
+- [Número De Perguntas Por Ano - Dbunit](attachments/número_de_perguntas_por_ano_-_dbunit.png)
+- [Número Médio De Visualizações Por Tema](attachments/número_médio_de_visualizações_por_tema.png)
+- [Número Médio De Visualizações Por Tipo De Pergunta](attachments/número_médio_de_visualizações_por_tipo_de_pergunta.png)
+- [Perguntas Divididas Pela Presença De Código](attachments/perguntas_divididas_pela_presença_de_código.png)
+- [Perguntas Por Presença De Resposta](attachments/perguntas_por_presença_de_resposta.png)
+- [Perguntas Por Presença De Resposta Aceita](attachments/perguntas_por_presença_de_resposta_aceita.png)
+- [Perguntas Por Presença De Resposta E Resposta Aceita](attachments/perguntas_por_presença_de_resposta_e_resposta_aceita.png)
+- [Perguntas Por Presença De Resposta E Resposta Aceita - Dbunit](attachments/perguntas_por_presença_de_resposta_e_resposta_aceita_-_dbunit.png)
+- [Perguntas Por Presença De Resposta E Resposta Aceita - Geral](attachments/perguntas_por_presença_de_resposta_e_resposta_aceita_-_geral.png)
+- [Perguntas Por Tema Mais Presente](attachments/perguntas_por_tema_mais_presente.png)
+- [Perguntas Por Tipo](attachments/perguntas_por_tipo.png)
+- [Perguntas Por Tipo - Android](attachments/perguntas_por_tipo_-_android.png)
+- [Perguntas Por Tipo - Swing](attachments/perguntas_por_tipo_-_swing.png)
+- [Perguntas Por Tipo Desconsiderando Não Relevantes](attachments/perguntas_por_tipo_desconsiderando_não_relevantes.png)
+- [Postagens Dividas Por Perguntas E Respostas](attachments/postagens_dividas_por_perguntas_e_respostas.png)
+- [Probabilidade De Uma Pergunta Ser De Um Tema Pelo Seu Tipo](attachments/probabilidade_de_uma_pergunta_ser_de_um_tema_pelo_seu_tipo.png)
+- [Proporções De Presença De Resposta Por Tema](attachments/proporções_de_presença_de_resposta_por_tema.png)
+- [Proporções De Presença De Resposta Por Tipo De Pergunta](attachments/proporções_de_presença_de_resposta_por_tipo_de_pergunta.png)
+- [Respostas Divididas Pela Presença De Código](attachments/respostas_divididas_pela_presença_de_código.png)
+- [Respostas Por Tipo De Pergunta](attachments/respostas_por_tipo_de_pergunta.png)
+- [Respostas Por Tipo De Pergunta Desconsiderando Não Relevantes](attachments/respostas_por_tipo_de_pergunta_desconsiderando_não_relevantes.png)
+- [Tipo De Perguntas Do Tema 1](attachments/tipo_de_perguntas_do_tema_1.png)
+- [Tipo De Perguntas Do Tema 2](attachments/tipo_de_perguntas_do_tema_2.png)
+- [Tipo De Perguntas Do Tema 2 (integração Com Outras Ferramentas)](attachments/tipo_de_perguntas_do_tema_2_(integração_com_outras_ferramentas).png)
+- [Tipo De Perguntas Do Tema 3](attachments/tipo_de_perguntas_do_tema_3.png)
+- [Total De Perguntas Por Ano - Geral  ](attachments/total_de_perguntas_por_ano_-_geral.png)
 
-## TODO
+## Banco de Dados
 
-- Organizar log antigo
-- Melhorar organização dos scripts
+- Na pasta backup há o *dump* mais recente utilizado neste trabalho, segue uma breve explicação do seu esquema:
 
-### Layout
+### post
 
-  - Introdução
-    - Testes automáticos
-    - Dificuldades com testes de integração
-    - Dbunit
-  - Questões de Pesquisa
-    - Q1​: Qual é o tipo de pergunta mais feita pelos usuários do dbunit no Stack Overflow.
-    - Q2​: ​Quais são os temas mais comuns nas postagens do Stack Overflow relacionadas ao dbunit.
-    - Q3​: Qual é a qualidade das respostas oferecidas pelos usuários do site.
-    - Q4​: As diferenças entre as dificuldades dos usuários do dbunit e de outras tecnologias de desenvolvimento de software.
-  - Levantamento de dados
-    - Separando os dados para o banco de dados
-    - Decidindo não usar IA
-    - Classificação manual
-    - Extração de informações através de scripts
-    - LDA
-    - Stemização dos corpos das postagens
-    - Escolha do número de temas e a utilização dos titulos na busca
-    - Queries no stack overflow
-  - Análise de dados
-    - (Q1) "Como" e "O quê" tem mais perguntas, "porque" tem mais visualizações
-    - (Q1) Comparação com o outro trabalho
-    - (Q2) Apresentação dos temas.
-    - (Q2) Integrações e problemas de configuração.
-    - (Q3) Menos respostas do que a média
-    - (Q3) Menos respostas aceitas do que a média
-    - (Q4) Poucas perguntas.
-    - (Q4) Continua relevante
-  - Conclusão
-    - É uma ferramenta pouco utilizada, mas que se mantém relevante devido a integração com outras ferramentas
-    - Se beneficiaria de integração mais simplificada com outras ferramentas (banco de dados, frameworks e controladores de dependencias)
-    - A pouca utlização tem a ver com o baixo número de testes de integração, ou há outras estrtégias indeendentes?
+A tabela post guarda todas as postagens (sejam perguntas ou respostas) que contenham a palavra dbunit no seu corpo. A tabela é composta pelos seguintes atributos:
+
+- **id**: Identificador do post no *Stack Overflow*
+- **title**: Título da postagem
+- **body**: Corpo do texto sem modificações
+- **answer\_count**: Número de respostas
+- **accepted\_answer\_id**: Número de respostas
+- **creation\_date**: Data de criação da postagem
+- **last\_activity\_date**: Data da última atividade da postagem
+- **last\_editor\_user\_id**: Id do último usuário que a editou
+- **score**: Número de "pontos" atribuídos à postagem pelos usuários do site
+- **last\_edit\_date**: Data da última edição da postagem
+- **post\_type\_id**: Tipo da postagem (1 - Pergunta, 2 - Resposta)
+- **comment\_count**: Número de comentários na postagem
+- **view\_count**: Número de visualizações na postagem
+- **owner\_user\_id**: Id do usuário que criou a postagem
+- **owner\_display\_name**: apelido do usuário que criou a postagem
+- **closed\_date**: Data que a postagem foi fechada
+- **favorite\_count**: Número de pessoas que favoritaram a postagem
+- **last\_editor\_display\_name**: Nome do último usuário que editou a postagem
+- **parent\_id**: Id da pergunta respondida pela postagem
+- **stemmed\_body**: Corpo do texto simplificado
+- **question\_type**: Tipo de pergunta (1 - O quê, 2 - Como, 3 - Porque, 4 - Não Relevante)
+- **topics**: Lista de probabilidades de a postagem pertencer ao tema cujo identificador é o índice da lista
+
+### cited\_links
+
+Tabela que guarda informações sobre todos os links citados nas postagens. A tabela é composta pelos seguintes atributos:
+
+- **id**: Identificador do link
+- **post**: Post que citou o link
+- **link**: Texto do link
+- **location**: Domínio do link
+
+### outside\_data
+
+Tabela que guarda informações trazidas de outras fontes para a geração de gráficos. A tabela é composta pelos seguintes atributos:
+
+- **id**: Identificador da informação
+- **origin**: Origem da informação
+- **description**: Descrição da informação
+- **value**: Valor da informação
+- **table\_description**: Descrição da tabela ou do gráfico a qual a informação é utilizada
+
+### question\_type
+
+Tabela que guarda os tipos de perguntas utilizadas neste trabalho. A tabela é composta pelos seguintes atributos:
+
+- **id**: Código do tipo de pergunta
+- **description**: Descrição do tipo de pergunta
+
+### topic
+
+Tabela que guarda os tópicos encontrados utilizando o script *extract\_themes.py*. A tabela é composta pelos seguintes atributos:
+
+- **id**: Código do tema
+- **words**: Palavras que definem o tema
